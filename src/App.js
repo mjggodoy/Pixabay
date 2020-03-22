@@ -7,34 +7,32 @@ function App() {
   const [seachApi, saveSearchApi] = useState('');
 
   useEffect(() => {
-
     const apiRequest = async() => {
-    if (seachApi === '') {
-      return;
-    }
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const numberOfImagesPerPage = 5;
-    const apiKey = '';
-    const url = `https://pixabay.com/api/?key=${apiKey}&q=${seachApi}&per_page=${numberOfImagesPerPage}`;
-    const response = await axios.get(proxyurl+url).
-      then((response) => {
-      console.log(response.data.hits);
-    })
-    .catch((error) => {
-      if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-      } else if (error.request) {
-          console.log('error, request', error.request);
-
-      } else {
-          console.log('Error', error.message);
+      if (seachApi === '' || seachApi === undefined || Array.isArray(seachApi)) {
+        return;
       }
-      console.error(error.config);
-    });
-  }
-   
+      const proxyurl = "https://cors-anywhere.herokuapp.com/";
+      const numberOfImagesPerPage = 5;
+      const apiKey = '';
+      const url = `https://pixabay.com/api/?key=${apiKey}&q=${seachApi}&per_page=${numberOfImagesPerPage}`;
+      const response = await axios.get(proxyurl+url).
+        then((response) => {
+        saveSearchApi(response.data.hits);
+      })
+      .catch((error) => {
+        if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+        } else if (error.request) {
+            console.log('error, request', error.request);
+
+        } else {
+            console.log('Error', error.message);
+        }
+        console.error(error.config);
+      });
+    }
     apiRequest();
 
   }, [seachApi]);
