@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import Form from './Form/Form';
 import axios from 'axios';
-
+import ListOfImages from './Images/ListOfImages';
 
 function App() {
   const [seachApi, saveSearchApi] = useState('');
+  const [images, saveImages] = useState();
 
   useEffect(() => {
     const apiRequest = async() => {
@@ -12,12 +13,12 @@ function App() {
         return;
       }
       const proxyurl = "https://cors-anywhere.herokuapp.com/";
-      const numberOfImagesPerPage = 5;
+      const numberOfImagesPerPage = 40;
       const apiKey = '';
       const url = `https://pixabay.com/api/?key=${apiKey}&q=${seachApi}&per_page=${numberOfImagesPerPage}`;
       const response = await axios.get(proxyurl+url).
         then((response) => {
-        saveSearchApi(response.data.hits);
+        saveImages(response.data.hits);
       })
       .catch((error) => {
         if (error.response) {
@@ -43,6 +44,11 @@ function App() {
         <p className="lead text-center">Images searcher</p>
         <Form
           saveSearchApi = {saveSearchApi}
+        />
+      </div>
+      <div className="row justify-content-center">
+        <ListOfImages
+          images= {images}
         />
       </div>
     </div>

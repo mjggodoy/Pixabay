@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Error from './../Form/Error'
+import Error from './../Form/Error';
 
 const Form = ({saveSearchApi}) => {
     const [value, saveValue] = useState('');
@@ -29,17 +29,26 @@ const Form = ({saveSearchApi}) => {
             <div className="form-group row">
                 <div className="col-md-8">
                     <input type="text" className="form-control form-control-lg"
+                    style = {seachBoxStyle}
                     placeholder="Search for an image..."
                     onChange={e => saveValue(e.target.value)}/>
                 </div>
                 <div className="col-md-4">
                     <input type="submit" className="btn btn-lg btn-danger btn-block"
-                    value="Search for an image"/>
+                    style={cardImageStyle} value="Search for an image"/>
                 </div>
             </div>
             {returnError(errorMessage)}
         </form>
     );
+}
+
+const cardImageStyle =  {
+  fontFamily: 'sans-serif'
+}
+
+const seachBoxStyle =  {
+    marginBottom: '10px'
 }
 
 export default Form;
