@@ -8,9 +8,9 @@ const ListOfImages = ({image}) => {
             <div className="card">
                 <img src={previewURL} alt={tags} className="card-img-top" style={cardImageStyle}></img>
             <div className="card-body">
-                <p className="card-text">{likes} Likes</p>
-                <p className="card-text">{downloads} Downloads</p>
-                <p className="card-text">{favorites} Favorites</p>
+                <p className="card-text">{likes} <b>Likes</b></p>
+                <p className="card-text">{downloads} <b>Downloads</b></p>
+                <p className="card-text">{favorites} <b>Favorites</b></p>
             </div> 
             <div className="card-footer">
                 <a className="card-text" href={largeImageURL} target="_blank" rel="noopener" style={buttonColor} className="btn btn-primary">Link to the image</a>
@@ -22,13 +22,13 @@ const ListOfImages = ({image}) => {
 
 const cardImageStyle =  {
     width: '100%',
-    height: '40vh',
+    height: '50vh',
     objectFit: 'cover'
 }
 
 const buttonColor = {
     backgroundColor: '#f57a00',
-    marginLeft: '25px',
+    marginLeft: '10px',
     fontFamily: 'sans-serif'
 }
 

@@ -30,7 +30,7 @@ const Form = ({saveSearchApi}) => {
                 <div className="col-md-8">
                     <input type="text" className="form-control form-control-lg"
                     style = {seachBoxStyle}
-                    placeholder="Search for an image..."
+                    placeholder="Include a keyword to search images..."
                     onChange={e => saveValue(e.target.value)}/>
                 </div>
                 <div className="col-md-4">
